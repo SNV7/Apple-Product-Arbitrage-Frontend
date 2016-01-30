@@ -1,0 +1,79 @@
+
+
+<div class="container">
+<h2> {{pageTitle}} </h2>
+
+<div ng-sparkline></div>
+
+<div class="row">
+	<div class="col-xs-12">
+
+		<table class="table table-bordered">
+			<tr>
+				<td>
+					<!-- Product line selection -->
+					<h5>Product Line</h5>
+					<select data-ng-model="currentProductLine"
+                			data-ng-options="productLine.product_line_name for productLine in productLines" class="btn btn-default dropdown-toggle">                
+       				 </select>
+				</td>
+
+				<td>
+					<!-- Product model selection -->
+					<h5>Product Model</h5>
+					<select data-ng-model="currentProductModel"
+                			data-ng-options="product.product_model for product in products" class="btn btn-default dropdown-toggle">                
+        			</select>
+				</td>
+
+				<td>
+					<!-- Country selection -->
+					<h5>Your Country</h5>
+       				<select data-ng-model="currentCountry"
+                			data-ng-options="country.country_name for country in countries" class="btn btn-default dropdown-toggle">                
+        			</select>
+				</td>
+
+			<tr>
+		</table>
+
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th ng-repeat="field in fields" ng-click="sort(field)"> 
+						{{ field | modelPropertyNameToUIString}}
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-click='openLink(price.product_url)' ng-repeat='price in prices'>
+					<td ng-repeat='field in fields'>
+						<div ng-switch on= "field">
+						<div ng-switch-when="flag_image"> <img src="views/images_flags/{{ price['country_name'] | flagImageNameForCountryName }}" height="30" width="50" style="border:1px solid black;"> </div>
+
+						<div ng-switch-when="exchange_rate"> {{ price[field]|roundNumberToSixPlaces }} </div>
+						<div ng-switch-when="price_difference"> {{ price[field] }} </div>
+						<!-- style="color:green" -->
+						<div ng-switch-default> {{ price[field] }} </div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<b>Product Prices Last Updated:</b> {{priceLastUpdateDate | date:'EEEE MMM d yyyy @ HH:mm Z'}}<br>
+	<b>Exchange Rates Last Updated:</b> {{exchangeRatesLastUpdateDate | date:'EEEE MMM d yyyy @ HH:mm Z'}}
+
+
+</div>
+</div>

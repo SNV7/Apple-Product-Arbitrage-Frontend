@@ -1,0 +1,17 @@
+{
+  "name"         : "apple-arbitrage",
+  "version"      : "0.0.1",
+  "description"  : "apple arbitrage app",
+  "main"         : "server.js",
+  "dependencies" : {
+  	"express"    : "latest",
+    "request"    : "latest",
+    "cheerio"    : "latest",
+    "mongoose"   : "latest",
+    "morgan"     : "latest",
+    "body-parser": "latest",
+    "bcrypt-nodejs": "latest",
+    "jsonwebtoken": "latest"
+
+  }
+}
